@@ -3,13 +3,14 @@
 
 #include <ptxjit/kernel.hpp>
 
+
+using namespace ptxjit;
+
 TEST_CASE("BASICS")
 {
 	SECTION("LITERALS")
 	{
-		using namespace ptxjit;
-
-		ptxjit::kernel test("saxpy",params{"a"_u64,"b"_u64,"c"_u64,"d"_u64});
+		kernel test("saxpy",params{"a"_f32,"b"_f32,"c"_f32,"d"_f32});
 		std::cout << test << '\n';
 	}
 }

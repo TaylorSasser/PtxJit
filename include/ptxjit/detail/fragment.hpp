@@ -85,24 +85,6 @@ namespace ptxjit
 		}
 	};
 
-	namespace detail
-	{
-		template<std::size_t...>
-		struct to_chars { static const char value[]; };
-
-		template<std::size_t... digits>
-		constexpr char to_chars<digits...>::value[] = {('0' + digits)..., 0};
-
-		template<std::size_t rem, std::size_t... digits>
-		struct explode : explode<rem / 10, rem % 10, digits...> {};
-
-		template<std::size_t... digits>
-		struct explode<0, digits...> : to_chars<digits...> {};
-	}
-
-	template<std::size_t num>
-	struct num_to_string : detail::explode<num> {};
-
 	template<std::size_t N,std::size_t M>
 	constexpr auto operator+(fragment<char,N> const& s1,fragment<char,M> const& s2)
 		-> fragment<char,N + M - 1>

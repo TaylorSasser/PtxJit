@@ -1,7 +1,7 @@
 #ifndef PTXJIT_KERNEL_HPP
 #define PTXJIT_KERNEL_HPP
 
-#include <ptxjit/type.hpp>
+#include <ptxjit/param.hpp>
 
 namespace ptxjit
 {
@@ -11,7 +11,7 @@ namespace ptxjit
 	public:
 		using parameters_t = params<ParameterTypes...>;
 
-		kernel(std::string name,params<ParameterTypes...> const& params) noexcept
+		kernel(std::string name,parameters_t&& params) noexcept
 			: kernel_name_{std::move(name)},parameters_{params}
 		{}
 
@@ -25,11 +25,11 @@ namespace ptxjit
 			return parameters_;
 		}
 
-		template<typename... ParameterTypes>
-		friend std::ostream& operator<<(std::ostream& os,kernel<ParameterTypes...> const& kernel)
+		friend std::ostream& operator<<(std::ostream& os,kernel<ParameterTypes...> const& k)
 		{
-			return (os << "name : \"" << kernel.name() << "\" parameters : " << kernel.parameters());
+			return (os << "name : \"" << k.name() << "\" parameters : " << k.parameters());
 		}
+
 	private:
 		std::string const kernel_name_;
 		parameters_t const parameters_;
