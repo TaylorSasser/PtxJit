@@ -23,10 +23,9 @@ namespace ptxjit
 
 		friend std::ostream& operator<<(std::ostream &os, param<T> const& param)
 		{
-			return (os << ".param " << param.name_ << type_class::value);
+			return (os << ".param " << type_class::value << param.name());
 		}
 	};
-
 
 	template<typename... Parameters>
 	class params

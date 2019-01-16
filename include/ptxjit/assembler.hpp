@@ -5,21 +5,11 @@
 
 namespace ptxjit
 {
-	class instruction;
-
-
-
-
 	class assembler
 	{
 	public:
 
 	private:
-		template<typename T>
-		std::uint32_t emit(
-			instruction inst,
-			operand<T> const& op1,
-			operand<T> const& op2);
 
 	};
 }
